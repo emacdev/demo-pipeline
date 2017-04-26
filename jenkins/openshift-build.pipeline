@@ -1,0 +1,11 @@
+node('maven') {
+stage 'build'
+openshiftBuild(buildConfig: 'tgapp', showBuildLogs: 'true')
+
+stage 'deploy'
+
+openshiftDeploy(deploymentConfig: 'tgapp')
+
+openshiftScale(deploymentConfig: 'tgapp',replicaCount: '2')
+
+}
